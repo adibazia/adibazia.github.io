@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adiba Zia | Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            display: flex;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Left Sidebar Styling */
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            background-color: #0a192f;
+            position: fixed;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+        }
+
+        .sidebar h2 {
+            color: #ffffff;
+            font-size: 22px;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        .sidebar a {
+            color: #8892b0;
+            text-decoration: none;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #ffffff;
+            background-color: #112240;
+            font-weight: 600;
+        }
+
+        /* Right Main Content Styling */
+        .main-content {
+            margin-left: 260px;
+            padding: 60px 80px;
+            width: calc(100% - 260px);
+        }
+
+        section {
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding-bottom: 80px;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        /* Home Section */
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #0a192f;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: 42px;
+            color: #0a192f;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        /* Social Buttons Styling */
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #0a192f;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            background-color: #0077b5;
+        }
+
+        /* Full Width Underlined Section Headings */
+        .section-title {
+            font-size: 32px;
+            color: #0a192f;
+            margin-bottom: 30px;
+            width: 100%;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #0077b5;
+        }
+
+        .about-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #444;
+            max-width: 850px;
+            margin-bottom: 15px;
+        }
+
+        /* Category Header Badge */
+        .category-header {
+            display: inline-block;
+            background-color: #0a192f;
+            color: #ffffff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 700;
+            margin: 35px 0 20px 0;
+            border-bottom: 3px solid #0077b5;
+        }
+
+        /* Uniform Card Grids */
+        .projects-grid, .marketing-grid, .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* Bold Blue Outlined Cards */
+        .project-card, .marketing-card, .cert-card {
+            background: #ffffff;
+            border: 2px solid #0077b5;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0, 119, 181, 0.08);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Card Hover Effects */
+        .project-card:hover, .marketing-card:hover, .cert-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(10, 25, 47, 0.18);
+            background: #f4f9fc;
+        }
+
+        .project-card:hover .card-title, 
+        .marketing-card:hover .card-title,
+        .cert-card:hover .card-title {
+            color: #0077b5;
+            font-weight: 800;
+        }
+
+        .card-tag {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #0077b5;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            color: #0a192f;
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+
+        .card-desc {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .cert-date {
+            font-size: 13px;
+            color: #888;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .more-card {
+            background-color: #0a192f;
+            border: 2px solid #0a192f;
+            color: #ffffff;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .more-card h3 {
+            color: #ffffff;
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .more-card p {
+            color: #8892b0;
+            font-size: 14px;
+        }
+
+        /* Digital Marketing Highlight Card */
+        .marketing-banner {
+            background: #0a192f;
+            color: #ffffff;
+            border: 2px solid #0077b5;
+            padding: 22px 30px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-size: 16px;
+            line-height: 1.6;
+            width: 100%;
+            box-shadow: 0 4px 12px rgba(10, 25, 47, 0.15);
+        }
+
+        .marketing-banner strong {
+            color: #64ffda;
+        }
+
+        /* Contact Section Styling */
+        .contact-container {
+            width: 100%;
+            background: #ffffff;
+            border: 2px solid #0077b5;
+            border-radius: 8px;
+            padding: 35px;
+            box-shadow: 0 4px 12px rgba(0, 119, 181, 0.08);
+        }
+
+        .contact-intro {
+            font-size: 18px;
+            color: #444;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .contact-card {
+            background: #f8f9fa;
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            border-color: #0077b5;
+            background: #0a192f;
+            color: #ffffff;
+            transform: translateY(-4px);
+        }
+
+        .contact-card:hover .contact-label {
+            color: #64ffda;
+        }
+
+        .contact-label {
+            font-size: 13px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #0077b5;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-val {
+            font-size: 15px;
+            font-weight: 600;
+            word-break: break-all;
+        }
+
+        /* Image View Popup (Modal) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 25, 47, 0.88);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 85%;
+            max-height: 85%;
+            border-radius: 8px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Mobile Responsive Adjustments */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 20px;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .sidebar h2 {
+                margin-bottom: 0;
+            }
+
+            .sidebar a {
+                padding: 8px 10px;
+                font-size: 14px;
+                margin-bottom: 0;
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 30px 20px;
+            }
+
+            section {
+                min-height: auto;
+                padding-bottom: 50px;
+            }
+
+            .projects-grid, .marketing-grid, .certifications-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Left Sidebar Menu -->
+    <div class="sidebar">
+        <h2>Adiba Zia</h2>
+        <a href="#home">Home</a>
+        <a href="#about">About Me</a>
+        <a href="#projects">Projects</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        
+        <!-- Home Section -->
+        <section id="home">
+            <img src="profile.png" alt="Adiba Zia" class="profile-img">
+            <h1>Adiba Zia</h1>
+            <p class="tagline">Creative Designer | Aspiring Developer</p>
+            
+            <div class="btn-container">
+                <a href="https://www.linkedin.com/in/adiba-zia" target="_blank" class="btn">LinkedIn Profile</a>
+                <a href="https://github.com/adibazia" target="_blank" class="btn">GitHub Profile</a>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <p class="about-text">
+                I’m a passionate Creative Designer and Digital Marketer with hands-on experience in creating visually appealing designs and developing digital strategies. I have completed 5+ marketing projects and 30+ graphic design projects.
+            </p>
+            <p class="about-text">
+                Currently, I’m expanding my skills in Python and web development, with a focus on building smart, automated, and modern digital solutions.
+            </p>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2 class="section-title">Projects</h2>
+            
+            <!-- Graphic Design Sub-Section -->
+            <div class="category-header">Graphic Design</div>
+            
+            <div class="projects-grid">
+                
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div>
+                        <div class="card-tag">Graphic Design • Social Media Design</div>
+                        <h3 class="card-title">Real Estate Social Media Post</h3>
+                        <p class="card-desc">Designed a modern promotional post for a real estate brand.</p>
+                    </div>
+                    <button class="btn" onclick="openModal('images/real-estate.jpeg')">View Project</button>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div>
+                        <div class="card-tag">Graphic Design • Branding</div>
+                        <h3 class="card-title">Brand Identity & Logo Design</h3>
+                        <p class="card-desc">Designed a complete brand identity including logo, shirt, business card, and promotional materials.</p>
+                    </div>
+                    <button class="btn" onclick="openModal('images/brand-identity.jpeg')">View Project</button>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div>
+                        <div class="card-tag">Graphic Design • Logo Design</div>
+                        <h3 class="card-title">Logo Design</h3>
+                        <p class="card-desc">Designed a modern and professional logo for Blue Horizon Realty.</p>
+                    </div>
+                    <button class="btn" onclick="openModal('images/logo.jpeg')">View Project</button>
+                </div>
+
+                <!-- And Many More Card -->
+                <div class="project-card more-card">
+                    <div>
+                        <h3>30+ Projects</h3>
+                        <p>And Many More Created...</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Digital Media Marketing Sub-Section -->
+            <div class="category-header">Digital Media Marketing</div>
+
+            <div class="marketing-banner">
+                Managed end-to-end digital operations across <strong>5+ social media accounts</strong>, executing strategic content planning and organic audience engagement campaigns.
+            </div>
+
+            <div class="marketing-grid">
+                <div class="marketing-card">
+                    <div>
+                        <div class="card-tag">Operations</div>
+                        <h3 class="card-title">Account Management</h3>
+                        <p class="card-desc">Handled full page setup, content scheduling, and daily interactions across multi-channel client accounts.</p>
+                    </div>
+                </div>
+
+                <div class="marketing-card">
+                    <div>
+                        <div class="card-tag">Strategy</div>
+                        <h3 class="card-title">Campaign Execution</h3>
+                        <p class="card-desc">Executed targeted organic reach and brand awareness strategies to build authentic online presence.</p>
+                    </div>
+                </div>
+
+                <div class="marketing-card">
+                    <div>
+                        <div class="card-tag">Content</div>
+                        <h3 class="card-title">Strategy & Copywriting</h3>
+                        <p class="card-desc">Drafted tailored content calendars, post copy, and ad copy aligned with brand voice.</p>
+                    </div>
+                </div>
+
+                <div class="marketing-card">
+                    <div>
+                        <div class="card-tag">Analytics</div>
+                        <h3 class="card-title">Performance Optimization</h3>
+                        <p class="card-desc">Tracked engagement trends to refine post timing, layout formats, and core strategy.</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications">
+            <h2 class="section-title">Certifications</h2>
+
+            <div class="certifications-grid">
+                
+                <!-- Certificate 1 -->
+                <div class="cert-card">
+                    <div>
+                        <div class="card-tag">NAVTTC</div>
+                        <h3 class="card-title">Information Technology (Computer Operator)</h3>
+                        <p class="card-desc">Comprehensive training in IT fundamentals, office automation, and computer operations.</p>
+                        <div class="cert-date">Issued: 28 September 2024</div>
+                    </div>
+                    <button class="btn" onclick="openModal('images/cert-1.jpeg')">View Certificate</button>
+                </div>
+
+                <!-- Certificate 2 -->
+                <div class="cert-card">
+                    <div>
+                        <div class="card-tag">Forage</div>
+                        <h3 class="card-title">Software Engineering Job Simulation</h3>
+                        <p class="card-desc">Practical virtual experience focused on core software development tasks and engineering practices.</p>
+                        <div class="cert-date">Issued: 20 August 2026</div>
+                    </div>
+                    <button class="btn" onclick="openModal('images/cert-2.jpeg')">View Certificate</button>
+                </div>
+
+                <!-- Certificate 3 -->
+                <div class="cert-card">
+                    <div>
+                        <div class="card-tag">NexSkills</div>
+                        <h3 class="card-title">E-Commerce & Digital Marketing</h3>
+                        <p class="card-desc">Hands-on training in digital marketing tactics, social media strategy, and online commerce management.</p>
+                        <div class="cert-date">Issued: 10 July 2026</div>
+                    </div>
+                    <button class="btn" onclick="openModal('images/cert-3.jpeg')">View Certificate</button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2 class="section-title">Contact</h2>
+            
+            <div class="contact-container">
+                <p class="contact-intro">
+                    Feel free to reach out for project collaborations, creative inquiries, or web development opportunities.
+                </p>
+
+                <div class="contact-grid">
+                    <a href="mailto:adibazia27@gmail.com" class="contact-card">
+                        <span class="contact-label">Email</span>
+                        <span class="contact-val">adibazia27@gmail.com</span>
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/adiba-zia" target="_blank" class="contact-card">
+                        <span class="contact-label">LinkedIn</span>
+                        <span class="contact-val">adiba-zia</span>
+                    </a>
+
+                    <a href="https://github.com/adibazia" target="_blank" class="contact-card">
+                        <span class="contact-label">GitHub</span>
+                        <span class="contact-val">adibazia</span>
+                    </a>
+
+                    <a href="https://www.fiverr.com/users/adiba_zia/seller_dashboard" target="_blank" class="contact-card">
+                        <span class="contact-label">Fiverr</span>
+                        <span class="contact-val">adiba_zia</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Image Modal Popup -->
+    <div id="imageModal" class="modal">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+
+    <!-- JavaScript for Image Popup -->
+    <script>
+        function openModal(imageSrc) {
+            document.getElementById('modalImg').src = imageSrc;
+            document.getElementById('imageModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
